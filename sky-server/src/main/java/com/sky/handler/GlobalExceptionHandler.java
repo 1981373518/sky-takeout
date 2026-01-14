@@ -33,6 +33,19 @@ public class GlobalExceptionHandler {
             log.error("异常信息：{}", ex.getMessage());
             return Result.error(MessageConstant.ALREADY_EXIST);
         }else{
+            log.error("异常信息：{}", ex.getMessage());
+            return Result.error(MessageConstant.UNKNOWN_ERROR);
+        }
+
+    }
+
+    @ExceptionHandler
+    public Result exceptionHandler(NullPointerException ex){
+        if (ex.getMessage().contains("\"employee\" is null")){
+            log.error("异常信息：{}", ex.getMessage());
+            return Result.error(MessageConstant.ACCOUNT_NOT_FOUND);
+        }else{
+            log.error("异常信息：{}", ex.getMessage());
             return Result.error(MessageConstant.UNKNOWN_ERROR);
         }
 
