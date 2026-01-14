@@ -5,6 +5,9 @@ import lombok.Data;
 import java.io.Serializable;
 
 @Data
+/*
+DTO主要是为了传输数据，与entity的区别是，entity中的部分数据不需要传输
+ */
 public class EmployeeDTO implements Serializable {
 
     private Long id;
