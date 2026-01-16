@@ -3,17 +3,17 @@ server:
 
 spring:
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: ${spring.datasource.driver-class-name}
     # 再次强调：改成你自己的数据库名 和 密码
-    url: jdbc:mysql://localhost:3306/sky_take_out?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
-    username: root
-    password:
+    url: ${spring.datasource.url}
+    username: ${spring.datasource.username}
+    password: ${spring.datasource.password}
     # 注意：这里不需要写 druid，默认就是 Hikari
   data:
     redis:
-      host: localhost
-      port: 6379
-      password:
+      host: ${spring.data.redis.host}
+      port: ${spring.data.redis.port}
+      password: ${spring.data.redis.password}
 
 
 mybatis:
@@ -41,6 +41,10 @@ sky:
     # 设置前端传递过来的令牌名称
     admin-token-name: token
   alioss:
-    endpoint: oss-cn-beijing.aliyuncs.com
-
-    bucket-name: sky-takeout-wsz
+    endpoint: ${sky.alioss.endpoint}
+    access-key-id: ${sky.alioss.access-key-id}
+    access-key-secret: ${sky.alioss.access-key-secret}
+    bucket-name: ${sky.alioss.bucket-name}
+  wechat:
+    appid: ${sky.wechat.appid}
+    secret: ${sky.wechat.secret}
