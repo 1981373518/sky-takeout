@@ -9,7 +9,6 @@ import com.sky.mapper.DishMapper;
 import com.sky.mapper.SetmealMapper;
 import com.sky.mapper.ShoppingCartMapper;
 import com.sky.service.ShoppingCartService;
-import com.sky.vo.DishVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +34,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         ShoppingCart shoppingCart = new ShoppingCart();
         BeanUtils.copyProperties(shoppingCartDTO,shoppingCart);
         shoppingCart.setUserId(BaseContext.getCurrentId());
-        List<ShoppingCart> list = shoppingCartMapper.select(shoppingCart);
+        List<ShoppingCart> list = shoppingCartMapper.list(shoppingCart);
 
         // 2.如果有数量加一
         if (list != null && ! list.isEmpty()){
@@ -65,7 +64,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     public List<ShoppingCart> selectAll() {
         ShoppingCart shoppingCart = new ShoppingCart();
         shoppingCart.setUserId(BaseContext.getCurrentId());
-        List<ShoppingCart> list = shoppingCartMapper.select(shoppingCart);
+        List<ShoppingCart> list = shoppingCartMapper.list(shoppingCart);
         return list;
     }
 
@@ -79,7 +78,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         ShoppingCart shoppingCart = new ShoppingCart();
         BeanUtils.copyProperties(shoppingCartDTO,shoppingCart);
         shoppingCart.setUserId(BaseContext.getCurrentId());
-        List<ShoppingCart> list = shoppingCartMapper.select(shoppingCart);
+        List<ShoppingCart> list = shoppingCartMapper.list(shoppingCart);
         if(list == null || list.isEmpty()){return;}
         ShoppingCart shoppingCart1 = list.get(0);
         if(shoppingCart1.getNumber() == 1){
